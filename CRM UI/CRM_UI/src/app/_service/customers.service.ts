@@ -14,7 +14,7 @@ export class CustomersService {
     return this.http.get<Customer[]>(this.baseUrl);
   }
 
-  grtCustomerById(id:string){
+  grtCustomerById(id:number){
     return this.http.get<Customer>(this.baseUrl + id);
   }
 

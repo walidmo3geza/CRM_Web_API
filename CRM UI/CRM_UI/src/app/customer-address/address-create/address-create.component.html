@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="mb-3">
+        <label for="addressLine_1" class="form-label">Address Line 1</label>
+        <input type="text" class="form-control" id="addressLine_1" [(ngModel)]="newAddress.addressLine_1">
+    </div>
+    <div class="mb-3">
+        <label for="addressLine_2" class="form-label">Address Line 2</label>
+        <input type="text" class="form-control" id="addressLine_2" [(ngModel)]="newAddress.addressLine_2">
+    </div>
+    <div class="mb-3">
+        <label for="city" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" [(ngModel)]="newAddress.city">
+    </div>
+    <div class="mb-3">
+        <label for="state" class="form-label">State</label>
+        <input type="email" class="form-control" id="state" [(ngModel)]="newAddress.state">
+    </div>
+    <div class="mb-3">
+        <label for="postalCode" class="form-label">Postal Code</label>
+        <input type="text" class="form-control" id="postalCode" [(ngModel)]="newAddress.postalCode">
+    </div>
+    <div class="mb-3">
+        <label for="country" class="form-label">Country</label>
+        <input type="text" class="form-control" id="postalCode" [(ngModel)]="newAddress.country">
+    </div>
+    <div>
+        <input type="radio" id="billingAddressFlag" name="AddressFlag" value="true" checked [(ngModel)]="addressBilling">
+        <label for="billingAddressFlag">Billing Address</label>
+      </div>
+      <div>
+          <input type="radio" id="shippingAddressFlag" name="AddressFlag" value="false" [(ngModel)]="addressBilling">
+          <label for="shippingAddressFlag">Shipping Address</label>
+      </div>
+    <button (click)="save()" type="submit" class="btn btn-primary">Save</button>
+</div>

@@ -13,7 +13,7 @@ export class CustomerUpdateComponent implements OnInit {
 
   constructor(public customerSer:CustomersService, public ar:ActivatedRoute, public router:Router) { }
 
-  id:string = "";
+  id:number = 0;
 
   customerAddress:CustomerAddress[] = [];
 

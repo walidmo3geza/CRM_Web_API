@@ -14,16 +14,26 @@ export class CustomerAddressComponent implements OnInit {
 
   constructor(public customerAddressSer:CustomerAddressesService, public router:Router, public ar:ActivatedRoute, public customerSer:CustomersService) { 
 
-  }
+  } 
 
   customerAddress:CustomerAddress[] = [];
 
   customer:Customer = new Customer(0, "00000000-0000-0000-0000-000000000000", "", "", "", "", this.customerAddress);
-  customerId:string = "";
+  customerId:number = 0;
+  addresses:CustomerAddress[] = [];
 
   ngOnInit(): void {
     this.ar.params.subscribe(i => {
       this.customerId = i['id'];
+      console.log(this.customerId);
+      this.customerAddressSer.grtAllAddress().subscribe(a => {
+        for (let i = 0; i < a.length; i++) {
+          if (a[i].customerId == this.customerId) {
+            this.addresses.push(a[i]);
+            console.log(a[i].customerId);
+          }
+        }
+      })
       this.customerSer.grtCustomerById(this.customerId).subscribe(a => {
         this.customer = a;
       })

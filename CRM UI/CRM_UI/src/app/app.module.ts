@@ -10,7 +10,7 @@ import { SharesModule } from './shares/shares.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

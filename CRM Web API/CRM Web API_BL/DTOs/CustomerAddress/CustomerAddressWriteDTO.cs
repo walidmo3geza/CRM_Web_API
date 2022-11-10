@@ -18,4 +18,6 @@ public class CustomerAddressWriteDTO
     public string Country { get; set; } = "";
     public bool ShippingAddressFlag { get; set; }
     public bool BillingAddressFlag { get; set; }
+    //public CustomerChildReadDTO Customer { get; set; } = new CustomerChildReadDTO();
+    public int CustomerId { get; set; }
 }

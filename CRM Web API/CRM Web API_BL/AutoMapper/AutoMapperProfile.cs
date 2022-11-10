@@ -21,6 +21,7 @@ public class AutoMapperProfile : Profile
         CreateMap<Customer, CustomerReadDTO>();
 
         CreateMap<Customer, CustomerChildReadDTO>();
+        CreateMap<CustomerChildReadDTO, Customer>();
 
         CreateMap<CustomerWriteDto, Customer>();
 
