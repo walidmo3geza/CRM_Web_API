@@ -18,7 +18,7 @@ public class CustomerAddress
     public string Country { get; set; } = "";
     public bool ShippingAddressFlag { get; set; }
     public bool BillingAddressFlag { get; set; }
-    public Customer Customer { get; set; } = new Customer();
+    public Customer? Customer { get; set; }
     public int CustomerId { get; set; }
     //public SalesOrderHeader SalesOrderHeader { get; set; } = new SalesOrderHeader();
 }

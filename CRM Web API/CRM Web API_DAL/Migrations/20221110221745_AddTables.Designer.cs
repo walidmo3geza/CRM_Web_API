@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRMWebAPIDAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221110030124_AddCustumersCustomerAddressesAndProductsTables")]
-    partial class AddCustumersCustomerAddressesAndProductsTables
+    [Migration("20221110221745_AddTables")]
+    partial class AddTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,6 +129,78 @@ namespace CRMWebAPIDAL.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LineNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Qty")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SalesOrderHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SalesOrderHeaderId");
+
+                    b.ToTable("SalesOrderDetails");
+                });
+
+            modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("GrandTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Tax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("SalesOrderHeaders");
+                });
+
             modelBuilder.Entity("CRM_Web_API_DAL.CustomerAddress", b =>
                 {
                     b.HasOne("CRM_Web_API_DAL.Customer", "Customer")
@@ -140,9 +212,46 @@ namespace CRMWebAPIDAL.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderDetail", b =>
+                {
+                    b.HasOne("CRM_Web_API_DAL.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CRM_Web_API_DAL.SalesOrderHeader", "SalesOrderHeader")
+                        .WithMany("SalesOrderDetails")
+                        .HasForeignKey("SalesOrderHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("SalesOrderHeader");
+                });
+
+            modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderHeader", b =>
+                {
+                    b.HasOne("CRM_Web_API_DAL.Customer", "Customer")
+                        .WithMany("SalesOrderHeaders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("CRM_Web_API_DAL.Customer", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("SalesOrderHeaders");
+                });
+
+            modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderHeader", b =>
+                {
+                    b.Navigation("SalesOrderDetails");
                 });
 #pragma warning restore 612, 618
         }

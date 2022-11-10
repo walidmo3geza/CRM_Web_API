@@ -52,7 +52,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.CustomerAddress", b =>
@@ -100,7 +100,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("CustomerAddresses", (string)null);
+                    b.ToTable("CustomerAddresses");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.Product", b =>
@@ -123,7 +123,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderDetail", b =>
@@ -161,7 +161,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasIndex("SalesOrderHeaderId");
 
-                    b.ToTable("SalesOrderDetails", (string)null);
+                    b.ToTable("SalesOrderDetails");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderHeader", b =>
@@ -195,7 +195,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("SalesOrderHeaders", (string)null);
+                    b.ToTable("SalesOrderHeaders");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.CustomerAddress", b =>
