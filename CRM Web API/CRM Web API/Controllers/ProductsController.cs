@@ -38,6 +38,7 @@ namespace CRM_Web_API.Controllers
         }
         // PUT: api/products/5
         [HttpPut]
+        [Route("{id:int}")]
         public IActionResult Editproduct(ProductWriteDTO product)
         {
             var result = productManager.UpdateProduct(product);

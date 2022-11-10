@@ -17,11 +17,11 @@ public class CustomerAddressRepo : GenericRepo<CustomerAddress>, ICustomerAddres
 
     public List<CustomerAddress> GetAllCustomerAddressesWithCustomer()
     {
-        return context.customerAddresses.Include(c => c.Customer).ToList();
+        return context.CustomerAddresses.Include(c => c.Customer).ToList();
     }
 
     public CustomerAddress? GetCustomerAddressWithCustomerByID(int id)
     {
-        return context.customerAddresses.Include(c => c.Customer).FirstOrDefault(c => c.Id == id);
+        return context.CustomerAddresses.Include(c => c.Customer).FirstOrDefault(c => c.Id == id);
     }
 }

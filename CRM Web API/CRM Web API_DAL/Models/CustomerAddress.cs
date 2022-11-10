@@ -20,4 +20,5 @@ public class CustomerAddress
     public bool BillingAddressFlag { get; set; }
     public Customer Customer { get; set; } = new Customer();
     public int CustomerId { get; set; }
+    //public SalesOrderHeader SalesOrderHeader { get; set; } = new SalesOrderHeader();
 }

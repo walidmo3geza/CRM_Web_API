@@ -21,4 +21,5 @@ public class Customer
     public string Email { get; set; } = "";
     public string? Phone { get; set; }
     public ICollection<CustomerAddress> Addresses { get; set; } = new HashSet<CustomerAddress>();
+    public ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; } = new HashSet<SalesOrderHeader>();
 }

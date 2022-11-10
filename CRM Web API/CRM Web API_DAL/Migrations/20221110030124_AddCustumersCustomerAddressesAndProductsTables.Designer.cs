@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRMWebAPIDAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221109203325_AddCustomersProductAndCustomerAddressesTables")]
-    partial class AddCustomersProductAndCustomerAddressesTables
+    [Migration("20221110030124_AddCustumersCustomerAddressesAndProductsTables")]
+    partial class AddCustumersCustomerAddressesAndProductsTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,7 +103,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("customerAddresses");
+                    b.ToTable("CustomerAddresses");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.Product", b =>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CRMWebAPIDAL.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCustomersProductAndCustomerAddressesTables : Migration
+    public partial class AddCustumersCustomerAddressesAndProductsTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,7 @@ namespace CRMWebAPIDAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "customerAddresses",
+                name: "CustomerAddresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -61,9 +61,9 @@ namespace CRMWebAPIDAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_customerAddresses", x => x.Id);
+                    table.PrimaryKey("PK_CustomerAddresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_customerAddresses_Customers_CustomerId",
+                        name: "FK_CustomerAddresses_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
@@ -71,8 +71,8 @@ namespace CRMWebAPIDAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_customerAddresses_CustomerId",
-                table: "customerAddresses",
+                name: "IX_CustomerAddresses_CustomerId",
+                table: "CustomerAddresses",
                 column: "CustomerId");
         }
 
@@ -80,7 +80,7 @@ namespace CRMWebAPIDAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "customerAddresses");
+                name: "CustomerAddresses");
 
             migrationBuilder.DropTable(
                 name: "Products");

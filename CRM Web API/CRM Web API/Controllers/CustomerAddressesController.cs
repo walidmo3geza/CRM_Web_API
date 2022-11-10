@@ -38,6 +38,7 @@ namespace CRM_Web_API.Controllers
         }
         // PUT: api/CustomerAddresss/5
         [HttpPut]
+        [Route("{id:int}")]
         public IActionResult EditCustomerAddress(CustomerAddressWriteDTO CustomerAddress)
         {
             var result = CustomerAddressManager.UpdateCustomerAddress(CustomerAddress);

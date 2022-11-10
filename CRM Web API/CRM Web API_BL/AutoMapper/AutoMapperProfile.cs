@@ -13,8 +13,10 @@ public class AutoMapperProfile : Profile
 	public AutoMapperProfile()
 	{
         CreateMap<Product, ProductReadDTO>();
+        CreateMap<Product, ProductWriteDTO>();
 
         CreateMap<ProductWriteDTO, Product>();
+        CreateMap<ProductReadDTO, Product>();
 
         CreateMap<Customer, CustomerReadDTO>();
 
