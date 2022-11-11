@@ -172,7 +172,7 @@ namespace CRMWebAPIDAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BillingAddressId")
+                    b.Property<int>("BillingAddressId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
@@ -184,7 +184,7 @@ namespace CRMWebAPIDAL.Migrations
                     b.Property<decimal>("GrandTotal")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("ShippingAddressId")
+                    b.Property<int>("ShippingAddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("Status")
@@ -242,7 +242,9 @@ namespace CRMWebAPIDAL.Migrations
                 {
                     b.HasOne("CRM_Web_API_DAL.CustomerAddress", "BillingAddress")
                         .WithMany()
-                        .HasForeignKey("BillingAddressId");
+                        .HasForeignKey("BillingAddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("CRM_Web_API_DAL.Customer", "Customer")
                         .WithMany("SalesOrderHeaders")
@@ -252,7 +254,9 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasOne("CRM_Web_API_DAL.CustomerAddress", "ShippingAddress")
                         .WithMany()
-                        .HasForeignKey("ShippingAddressId");
+                        .HasForeignKey("ShippingAddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("BillingAddress");
 

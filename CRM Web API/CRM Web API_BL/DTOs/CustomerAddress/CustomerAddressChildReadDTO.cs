@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CRM_Web_API_BL;
+
 public class CustomerAddressChildReadDTO
 {
     public int Id { get; set; }

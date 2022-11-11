@@ -11,16 +11,18 @@ public class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext context;
 
     public IProductRepo ProductRepo { get; }
-
+    public ISalesOrderDetailsRepo SalesOrderDetailsRepo { get; }
     public ICustomerRepo CustomerRepo { get; }
-
     public ICustomerAddressRepo CustomerAddressRepo { get; }
+    public ISalesOrderHeaderRepo SalesOrderHeaderRepo { get; }
 
-    public UnitOfWork(IProductRepo productRepo, ICustomerRepo customerRepo, ICustomerAddressRepo customerAddressRepo,ApplicationDbContext context)
+    public UnitOfWork(IProductRepo productRepo,ISalesOrderDetailsRepo salesOrderDetailsRepo , ICustomerRepo customerRepo, ICustomerAddressRepo customerAddressRepo,ISalesOrderHeaderRepo salesOrderHeaderRepo , ApplicationDbContext context)
     {
         ProductRepo = productRepo;
+        SalesOrderDetailsRepo = salesOrderDetailsRepo;
         CustomerRepo = customerRepo;
         CustomerAddressRepo = customerAddressRepo;
+        SalesOrderHeaderRepo = salesOrderHeaderRepo;
         this.context = context;
     }
 

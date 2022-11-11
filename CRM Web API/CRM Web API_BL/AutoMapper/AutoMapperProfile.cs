@@ -32,5 +32,16 @@ public class AutoMapperProfile : Profile
         CreateMap<CustomerAddress, CustomerAddressReadDTO>();
 
         CreateMap<CustomerAddressWriteDTO, CustomerAddress>();
+
+        CreateMap<SalesOrderHeader, SalseOrderHeaderReadDTO>();
+
+        CreateMap<SalesOrderHeader, SalseOrderHeaderChildReadDTO>();
+
+        CreateMap<SalseOrderHeaderWriteDTO, SalesOrderHeader>();
+        
+        CreateMap<SalesOrderDetail, SalesOrderDetailsReadDTO>();
+
+        CreateMap<SalesOrderDetailsWriteDTO, SalesOrderDetail>();
+        CreateMap<SalesOrderDetail, SalesOrderDetailsChildReadDTO>();
     }
 }

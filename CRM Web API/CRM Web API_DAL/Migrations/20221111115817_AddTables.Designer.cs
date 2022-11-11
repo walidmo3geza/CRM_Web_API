@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRMWebAPIDAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221110221745_AddTables")]
+    [Migration("20221111115817_AddTables")]
     partial class AddTables
     {
         /// <inheritdoc />
@@ -175,6 +175,9 @@ namespace CRMWebAPIDAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BillingAddressId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
@@ -183,6 +186,9 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.Property<decimal>("GrandTotal")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ShippingAddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -196,7 +202,11 @@ namespace CRMWebAPIDAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BillingAddressId");
+
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("ShippingAddressId");
 
                     b.ToTable("SalesOrderHeaders");
                 });
@@ -233,13 +243,29 @@ namespace CRMWebAPIDAL.Migrations
 
             modelBuilder.Entity("CRM_Web_API_DAL.SalesOrderHeader", b =>
                 {
+                    b.HasOne("CRM_Web_API_DAL.CustomerAddress", "BillingAddress")
+                        .WithMany()
+                        .HasForeignKey("BillingAddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("CRM_Web_API_DAL.Customer", "Customer")
                         .WithMany("SalesOrderHeaders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CRM_Web_API_DAL.CustomerAddress", "ShippingAddress")
+                        .WithMany()
+                        .HasForeignKey("ShippingAddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("BillingAddress");
+
                     b.Navigation("Customer");
+
+                    b.Navigation("ShippingAddress");
                 });
 
             modelBuilder.Entity("CRM_Web_API_DAL.Customer", b =>

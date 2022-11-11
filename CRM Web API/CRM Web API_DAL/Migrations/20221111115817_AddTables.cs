@@ -81,11 +81,23 @@ namespace CRMWebAPIDAL.Migrations
                     Tax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GrandTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    BillingAddressId = table.Column<int>(type: "int", nullable: false),
+                    ShippingAddressId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SalesOrderHeaders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SalesOrderHeaders_CustomerAddresses_BillingAddressId",
+                        column: x => x.BillingAddressId,
+                        principalTable: "CustomerAddresses",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SalesOrderHeaders_CustomerAddresses_ShippingAddressId",
+                        column: x => x.ShippingAddressId,
+                        principalTable: "CustomerAddresses",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_SalesOrderHeaders_Customers_CustomerId",
                         column: x => x.CustomerId,
@@ -141,17 +153,24 @@ namespace CRMWebAPIDAL.Migrations
                 column: "SalesOrderHeaderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalesOrderHeaders_BillingAddressId",
+                table: "SalesOrderHeaders",
+                column: "BillingAddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderHeaders_CustomerId",
                 table: "SalesOrderHeaders",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesOrderHeaders_ShippingAddressId",
+                table: "SalesOrderHeaders",
+                column: "ShippingAddressId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "CustomerAddresses");
-
             migrationBuilder.DropTable(
                 name: "SalesOrderDetails");
 
@@ -160,6 +179,9 @@ namespace CRMWebAPIDAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "SalesOrderHeaders");
+
+            migrationBuilder.DropTable(
+                name: "CustomerAddresses");
 
             migrationBuilder.DropTable(
                 name: "Customers");

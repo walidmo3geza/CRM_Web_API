@@ -11,5 +11,7 @@ public interface IUnitOfWork
     public IProductRepo ProductRepo { get; }
     public ICustomerRepo CustomerRepo { get; }
     public ICustomerAddressRepo CustomerAddressRepo { get; }
+    public ISalesOrderHeaderRepo SalesOrderHeaderRepo { get; }
+    public ISalesOrderDetailsRepo SalesOrderDetailsRepo { get; }
     public void SaveChanges();
 }

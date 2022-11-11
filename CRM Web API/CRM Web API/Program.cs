@@ -1,5 +1,6 @@
 using CRM_Web_API_BL;
 using CRM_Web_API_DAL;
+using CRM_Web_API_DAL.Repos;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,11 +20,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IProductRepo, ProductRepo>();
 builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
 builder.Services.AddScoped<ICustomerAddressRepo, CustomerAddressRepo>();
+builder.Services.AddScoped<ISalesOrderHeaderRepo, SalesOrderHeaderRepo>();
+builder.Services.AddScoped<ISalesOrderDetailsRepo, SalesOrderDetailsRepo>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<IProductManager, ProductManager>();
 builder.Services.AddScoped<ICustomerManager, CustomerManager>();
 builder.Services.AddScoped<ICustomerAddressManager, CustomerAddressManager>();
+builder.Services.AddScoped<ISalseOrderHeaderManager, SalseOrderHeaderManager>();
+builder.Services.AddScoped<ISalesOrderDetailManager, SalesOrderDetailManager>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
