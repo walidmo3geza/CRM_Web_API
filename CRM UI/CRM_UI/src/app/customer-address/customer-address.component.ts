@@ -19,7 +19,7 @@ export class CustomerAddressComponent implements OnInit {
   customerAddress:CustomerAddress[] = [];
 
   customer:Customer = new Customer(0, "00000000-0000-0000-0000-000000000000", "", "", "", "", this.customerAddress);
-  customerId:number = 0;
+  customerId:string = "";
   addresses:CustomerAddress[] = [];
 
   ngOnInit(): void {

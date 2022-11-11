@@ -1,0 +1,53 @@
+<div class="container m-5">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="d-grid">
+          <select
+            class="custom-select mb-3"
+            (change)="changeCustomer($event)"
+            formControlName="customerId"
+          >
+            <option value="">Choose Customer</option>
+            <option *ngFor="let item of customers" [ngValue]="item.id">
+              {{ item.firstName }} {{ item.lastName }}
+            </option>
+          </select>
+          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Choose</button>
+        </div>
+      </form>
+</div>
+
+<div class="container m-5 text-center" *ngIf="isSubmitted">
+    <form [formGroup]="shapingForm" (ngSubmit)="saveshaping()">
+        <div class="d-grid">
+          <select
+            class="custom-select mb-3"
+            (change)="changeshaping($event)"
+            formControlName="shapingAddressId"
+          >
+            <option value="">Choose Shopping Address</option>
+            <option *ngFor="let item of shapingAddress" [ngValue]="item.id">
+              {{ item.addressLine_1 }} {{ item.addressLine_1 }}
+            </option>
+          </select>
+          <button [disabled]="!shapingForm.valid" type="submit" class="btn btn-primary">Choose</button>
+        </div>
+      </form>
+      <form [formGroup]="billingForm" (ngSubmit)="saveBilling()" class="pt-5">
+        <div class="d-grid">
+          <select
+            class="custom-select mb-3"
+            (change)="changeBilling($event)"
+            formControlName="billingAddressId"
+          >
+            <option value="">Choose Billing Address</option>
+            <option *ngFor="let item of billingAddress" [ngValue]="item.id">
+              {{ item.addressLine_1 }} {{ item.addressLine_1 }}
+            </option>
+          </select>
+          <button [disabled]="!billingForm.valid" type="submit" class="btn btn-primary">Choose</button>
+        </div>
+      </form>
+      <button class="btn btn-primary mt-5" *ngIf="shapingAddressSubmited && billingAddressSubmited" (click)="addOrder()">Add Order</button>
+</div>
+
+

@@ -11,13 +11,8 @@ public class CustomerChildReadDTO
 {
     public int Id { get; set; }
     public Guid Code { get; set; }
-    [MaxLength(20)]
-    [MinLength(3)]
     public string FirstName { get; set; } = "";
-    [MaxLength(20)]
-    [MinLength(3)]
     public string LastName { get; set; } = "";
-    [EmailAddress]
     public string Email { get; set; } = "";
     public string? Phone { get; set; }
 }

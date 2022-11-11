@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', component: CustomersComponent },
   { path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
   { path: 'customers', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
+  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
 ];
 
 @NgModule({

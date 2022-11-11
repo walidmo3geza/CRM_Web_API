@@ -25,14 +25,13 @@ export class CreateComponent implements OnInit {
       name:["",[Validators.required,Validators.minLength(3)]],
       price:[0,[Validators.required]],
       description:["",[Validators.required]]
-    })
+    }) 
   }
 
   save(){
     this.productSer.addProduct(this.form.value).subscribe(a => {
       console.log(a);
     })
-    //this.router.navigateByUrl('/products');
+    this.router.navigateByUrl('/products');
   }
-
 }

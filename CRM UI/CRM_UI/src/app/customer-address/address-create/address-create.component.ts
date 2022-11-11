@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CustomerAddress } from 'src/app/_models/customer-address';
 import { CustomerAddressesService } from 'src/app/_service/customer-addresses.service';
@@ -12,36 +13,49 @@ import { CustomersService } from 'src/app/_service/customers.service';
 })
 export class AddressCreateComponent implements OnInit {
 
-  constructor(public ar:ActivatedRoute, public addressServ:CustomerAddressesService,public router:Router, public customerSer:CustomersService) { 
+  constructor(public fb: FormBuilder, public ar:ActivatedRoute, public addressServ:CustomerAddressesService,public router:Router, public customerSer:CustomersService) { 
     
   }
 
+  form!:FormGroup
+
   customerId:number = 0;
-  newAddress:CustomerAddress = new CustomerAddress(0, "", "", "", "", "", "", false, false,0);
+  newAddress:CustomerAddress = new CustomerAddress("", "", "", "", "", "", "", false, false,"");
 
   addressBilling:string = "true";
 
   ngOnInit(): void {
     this.ar.params.subscribe(i => {
       this.customerId = i['id'];
+      //this.form.value.customerId = i['id'];
       //console.log(this.customerId);
+    })
+    this.form = this.fb.group({
+      id:[0],
+      addressLine_1:["",[Validators.required]], 
+      addressLine_2:["",[Validators.required]],
+      city:["",[Validators.required]],
+      state:["",[Validators.required]],
+      postalCode:["",[Validators.required]],
+      country:["",[Validators.required]],
+      shippingAddressFlag:[true],
+      billingAddressFlag:[false],
+      customerId:[0],
+      addressType:["",[Validators.required]]
     })
   }
 
   save(){
-    this.newAddress.customerId = this.customerId;
-    if (this.addressBilling == "true") {
-      this.newAddress.billingAddressFlag = true;
-      this.newAddress.shippingAddressFlag = false;
+    this.form.value.customerId = this.customerId;
+    if (this.form.value.addressType == "billing") {
+      this.form.value.billingAddressFlag = true;
+      this.form.value.shippingAddressFlag = false;
     }
     else{
-      this.newAddress.billingAddressFlag = false;
-      this.newAddress.shippingAddressFlag = true;
+      this.form.value.billingAddressFlag = false;
+      this.form.value.shippingAddressFlag = true;
     }
-    console.log(this.newAddress);
-    console.log(this.customerId + "customerId");
-    console.log(this.newAddress.customerId);
-    this.addressServ.addAddress(this.newAddress).subscribe(a => {
+    this.addressServ.addAddress(this.form.value).subscribe(a => {
       //console.log(a);
       this.router.navigateByUrl("/customers/address/" + this.customerId);
     })
