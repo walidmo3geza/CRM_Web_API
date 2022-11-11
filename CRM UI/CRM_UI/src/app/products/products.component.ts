@@ -10,7 +10,9 @@ import { ProductsService } from '../_service/products.service';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(public productServ:ProductsService, public router:Router) { }
+  constructor(public productServ:ProductsService, public router:Router) { 
+    
+  }
 
   products:Product[] = [];
 
@@ -19,12 +21,9 @@ export class ProductsComponent implements OnInit {
       this.products = a;
     });
   }
-
   // ngOnChanges() {
   //   this.productServ.grtAllProducts().subscribe(a => {
   //     this.products = a;
   //   });
   // }
-
-  
 }

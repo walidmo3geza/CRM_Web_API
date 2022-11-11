@@ -14,14 +14,14 @@ public class SalesOrderHeader
     public DateTime Date { get; set; }
     public decimal Tax { get; set; } //0.14
     public decimal SubTotal { get; set; } 
-    public decimal GrandTotal { get; set; }
-    //public CustomerAddress BillingAddress { get; set; } = new CustomerAddress();
-    //[ForeignKey("BillingAddress")]
-    //public int BillingAddressId { get; set; }
-    //public CustomerAddress ShippingAddress { get; set; } = new CustomerAddress();
-    //[ForeignKey("ShippingAddress")]
-    //public int ShippingAddressId { get; set; }
-    public Customer Customer { get; set; } = new Customer();
+    public decimal GrandTotal { get; set; } // SubTotal + Tax
+    public Customer? Customer { get; set; }
     public int CustomerId { get; set; }
     public ICollection<SalesOrderDetail> SalesOrderDetails { get; set; } = new HashSet<SalesOrderDetail>();
+    [ForeignKey("BillingAddressId")]
+    public CustomerAddress? BillingAddress { get; set; }
+    public int BillingAddressId { get; set; }
+    [ForeignKey("ShippingAddressId")]
+    public CustomerAddress? ShippingAddress { get; set; }
+    public int ShippingAddressId { get; set; }
 }
