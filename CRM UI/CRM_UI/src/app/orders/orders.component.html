@@ -22,12 +22,12 @@
                     <td>{{ item.subTotal }}</td>
                     <td>{{ item.grandTotal }}</td>
                     <td>
-                        <a *ngIf="item.status == 'Active'" [routerLink]="['/orders', 'addProduct', item.id]" class="btn btn-success me-2">Add Product</a>
+                        <a *ngIf="item.status == 'Active'" [routerLink]="['/products']" class="btn btn-success me-2">Add Product</a>
                         <button *ngIf="item.status == 'Active'" (click)="canserOrder(item.id)" class="btn btn-primary">Cancel Order</button>
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> 
     </div>
     <router-outlet></router-outlet>
 </div>

@@ -18,8 +18,8 @@
                     <td>{{ item.description }}</td>
                     <td>{{ item.price }}</td>
                     <td>
-                        <!-- <a [routerLink]="['/products', 'details', item.id]" class="btn btn-primary">Details</a> -->
                         <a [routerLink]="['/products', 'update', item.id]" class="btn btn-info">Update</a>
+                        <a [routerLink]="['/products', 'addToCart', item.id]" class="btn btn-primary ms-3">Add To Cart</a>
                     </td>
                 </tr>
             </tbody>

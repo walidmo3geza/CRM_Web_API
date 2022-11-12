@@ -1,0 +1,40 @@
+<div class="container m-5">
+    <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="d-grid">
+          <select
+            class="custom-select mb-3"
+            (change)="changeOrder($event)"
+            formControlName="OrderHeaderId"
+          >
+            <option value="">Choose Order</option>
+            <option *ngFor="let item of ordersHeaders" [ngValue]="item.id">
+              {{ item.id }} {{ item.date }}
+            </option>
+          </select>
+          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Choose</button>
+        </div>
+      </form>
+</div>
+
+<div class="container" *ngIf="isSubmitted == true">
+    <p>Product Name: {{ product.name }}</p>
+    <p>Price: {{ product.price }}</p>
+    <form [formGroup]="qtyForm" (ngSubmit)="save()">
+        <div class="mb-3">
+            <label for="Quantity" class="form-label">Quantity</label>
+            <div class="row">
+                <div class="col-4 text-end">
+                    <p (click)="decQty()" class="btn btn-primary">-</p>
+                </div>
+                <div class="col-4">
+                    <input required type="text" class="form-control" id="Quantity" formControlName="qty">
+                </div>
+                <div class="col-4">
+                    <p (click)="incQty()" class="btn btn-primary">+</p>
+                </div>
+            </div>
+            
+        </div>
+        <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Save</button>
+</form>
+</div>
